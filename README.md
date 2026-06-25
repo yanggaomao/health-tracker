@@ -66,18 +66,12 @@ Example:
 @health-tracker I want to set my daily nutrition targets first. Female, 21, 174 cm, 79 kg, goal is fat loss, mostly seated work, strength training twice per week, and I have an InBody report.
 ```
 
-The plugin is designed for Chinese logs, so a Chinese prompt works naturally:
-
-```text
-@health-tracker 我想先设置每日饮食目标。女，21岁，174cm，79kg，目标减脂，工作大部分久坐，每周力量训练2次，有一张InBody报告。
-```
-
 ### 2. Log Meals
 
 Example:
 
 ```text
-@health-tracker 今天早餐一根香蕉，中午板烧鸡腿堡一个、中薯一份、无糖可乐半杯，晚餐一碗米饭、鸡蛋一个、肥牛七八片。
+@health-tracker Today I had one banana for breakfast. For lunch I had one McDonald's grilled chicken thigh burger, one medium fries, and half a cup of diet cola. For dinner I had one bowl of rice, one egg, and seven or eight slices of fatty beef.
 ```
 
 The plugin estimates:
@@ -106,13 +100,13 @@ Recommended label details:
 Example:
 
 ```text
-@health-tracker 今天喝了一勺蛋白粉，这款每100g：377kcal，蛋白质71g，脂肪6.1g，碳水8.2g，糖5.7g，盐0.45g；一勺30g。
+@health-tracker Today I had one scoop of protein powder. Its label says per 100 g: 377 kcal, 71 g protein, 6.1 g fat, 8.2 g carbs, 5.7 g sugar, and 0.45 g salt. One scoop is 30 g.
 ```
 
 After a label for the same product/flavor/version has already been provided, you can refer to it more casually:
 
 ```text
-@health-tracker 晚餐后喝了一勺之前那款抹茶蛋白粉。
+@health-tracker After dinner I had one scoop of the same matcha protein powder as before.
 ```
 
 ### 4. Log Workouts
@@ -120,7 +114,7 @@ After a label for the same product/flavor/version has already been provided, you
 Example:
 
 ```text
-@health-tracker 今天椭圆机40分钟，外扩腿60个，羽毛球2小时。
+@health-tracker Today I did 40 minutes on the elliptical, 60 reps on the hip abduction machine, and played badminton for 2 hours.
 ```
 
 The plugin organizes:
@@ -136,13 +130,13 @@ The plugin organizes:
 Body-weight example:
 
 ```text
-@health-tracker 今天早晨空腹体重78.6kg。
+@health-tracker My morning fasted weight today was 78.6 kg.
 ```
 
 InBody/body-composition example:
 
 ```text
-@health-tracker 这是我的InBody报告，体重显示有误，实际体重是79kg。
+@health-tracker This is my InBody report. The weight shown on the report is wrong; my actual weight should be 79 kg.
 ```
 
 The plugin prioritizes:
@@ -162,11 +156,11 @@ The plugin prioritizes:
 Examples:
 
 ```text
-@health-tracker 今天空腹指尖血糖5.4。
+@health-tracker Today's fasting finger-stick glucose was 5.4 mmol/L.
 ```
 
 ```text
-@health-tracker 晚饭后2小时血糖7.2 mmol/L。
+@health-tracker My glucose was 7.2 mmol/L two hours after dinner.
 ```
 
 The plugin:
@@ -181,15 +175,15 @@ The plugin:
 You can ask:
 
 ```text
-@health-tracker 总结最近两日饮食状况。
+@health-tracker Summarize my diet over the last two days.
 ```
 
 ```text
-@health-tracker 总结本月运动情况。
+@health-tracker Summarize my workouts for this month.
 ```
 
 ```text
-@health-tracker 画一下我的体重趋势。
+@health-tracker Draw my body-weight trend.
 ```
 
 Nutrition summaries can include daily intake, estimated maintenance, raw activity calories, conservatively counted activity calories, deficit/surplus, and protein/fat/carbohydrate target ratios.
