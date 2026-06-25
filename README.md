@@ -1,149 +1,165 @@
 # Health Tracker
 
-一个面向中文使用场景的 Codex 个人健康追踪插件，用来记录和总结饮食、运动、体成分/体重和指尖血糖。
+A Codex personal health-tracking plugin for Chinese-language logs. It helps record and summarize meals, workouts, body composition, body weight, and finger-stick blood glucose readings.
 
-它更像一个结构化健康日志助手：帮你把零散的自然语言记录整理成可追踪的表格、趋势、目标和下一步建议。它不提供医学诊断。
+Think of it as a structured health journal assistant: it turns casual natural-language notes into trackable tables, trends, targets, and practical next-step suggestions. It is not a medical diagnosis tool.
 
-## 功能概览
+## Feature Overview
 
-| 模块 | Skill | 适合记录/询问 |
+| Area | Skill | Use It For |
 | --- | --- | --- |
-| 饮食与热量缺口 | `daily-nutrition-deficit-tracker` | 每日饮食、蛋白粉、热量、蛋白质/脂肪/碳水、运动后热量缺口、营养结构总结 |
-| 运动日志 | `exercise-log-coach` | 有氧、力量训练、球类、步行/跑步、组数次数重量、训练频率和月度运动总结 |
-| 体成分与体重 | `body-composition-tracker` | InBody/体成分报告、体重、体脂率、骨骼肌、内脏脂肪、BMI、体重趋势图 |
-| 指尖血糖 | `blood-glucose-tracker` | 空腹/餐前/餐后/随机/睡前血糖，mmol/L 或 mg/dL，血糖趋势和范围解读 |
+| Nutrition and calorie deficit | `daily-nutrition-deficit-tracker` | Daily meals, protein powder, calories, protein/fat/carbs, exercise-adjusted deficit, nutrition structure summaries |
+| Exercise log | `exercise-log-coach` | Cardio, strength training, sports, walking/running, sets/reps/weights, training frequency, monthly workout summaries |
+| Body composition and weight | `body-composition-tracker` | InBody/body-composition reports, body weight, body fat percentage, skeletal muscle, visceral fat, BMI, weight trend charts |
+| Finger-stick blood glucose | `blood-glucose-tracker` | Fasting/pre-meal/post-meal/random/bedtime glucose, mmol/L or mg/dL values, glucose trend summaries and range-aware interpretation |
 
-## 主要能力
+## Main Capabilities
 
-- 用中文记录自然语言健康日志。
-- 自动识别日期表达，例如“今天”“昨天”“前天”。
-- 根据身高、体重、工作强度、运动习惯和 InBody/体成分结果，为每个人设置不同的每日热量和宏量营养目标。
-- 估算每日摄入、蛋白质、脂肪、碳水、糖、盐，以及热量缺口/盈余。
-- 对手表、手环、跑步机、椭圆机等活动热量进行保守折算，减少过度高估。
-- 记录 InBody/body composition 报告中的体脂、骨骼肌、基础代谢、内脏脂肪等指标。
-- 记录指尖血糖，并区分空腹、餐前、餐后、随机、睡前等时点。
-- 在总结时生成表格和趋势图；营养结构图会优先使用明确配色的 SVG/PNG，避免主题颜色混乱。
+- Log Chinese natural-language health notes.
+- Recognize relative dates such as "today", "yesterday", and "the day before yesterday" in the user's locale.
+- Set individualized daily calorie and macro targets from height, weight, work intensity, exercise habits, and optional InBody/body-composition results.
+- Estimate daily intake, protein, fat, carbohydrate, sugar, salt, and calorie deficit/surplus.
+- Count wearable, treadmill, elliptical, and other activity calories conservatively to avoid overestimating exercise burn.
+- Extract and track InBody/body-composition values such as body fat, skeletal muscle mass, basal metabolic rate, and visceral fat.
+- Track finger-stick glucose readings by timing: fasting, pre-meal, post-meal, random, or bedtime.
+- Generate summary tables and trend charts. Nutrition-structure charts prefer explicitly colored SVG/PNG output to avoid theme color issues.
 
-## 安装
+## Installation
 
-把这个仓库克隆到你的 Codex 插件目录，例如：
+Clone this repository into your Codex plugins directory:
 
 ```bash
 git clone https://github.com/yanggaomao/health-tracker.git ~/plugins/health-tracker
 ```
 
-然后在 Codex 中把它作为本地插件安装或启用。插件入口文件在：
+Then install or enable it as a local Codex plugin. The plugin entrypoint is:
 
 ```text
 .codex-plugin/plugin.json
 ```
 
-如果你是在 Windows 上使用，可以克隆到类似路径：
+On Windows, a typical local path is:
 
 ```text
-C:\Users\<你的用户名>\plugins\health-tracker
+C:\Users\<your-username>\plugins\health-tracker
 ```
 
-## 使用方式
+## Usage
 
-在 Codex 中启用插件后，可以直接提到 `health-tracker`，也可以显式调用某个 skill。
+After enabling the plugin in Codex, you can mention `health-tracker` directly or explicitly invoke one of its skills.
 
-### 1. 首次设置饮食目标
+### 1. Set Personalized Nutrition Targets First
 
-首次使用饮食模块时，插件会询问个人资料，用来计算更合适的每日热量和宏量营养目标：
+On first use, the nutrition module asks for a compact personal profile so it can calculate more appropriate daily calorie and macro targets.
 
-- 性别、年龄、身高、体重
-- 当前目标：减脂、重组、维持或增肌
-- 日常工作强度：久坐、轻度走动/站立、站立/体力混合、重体力
-- 运动习惯：每周频率、类型和时长
-- 可选：InBody/体成分报告，如基础代谢、体脂率、体脂肪量、骨骼肌量、内脏脂肪、目标体重
+Useful profile fields:
 
-示例：
+- Sex, age, height, and current weight
+- Current goal: fat loss, recomposition, maintenance, or muscle gain
+- Daily work intensity: mostly seated, light walking/standing, standing/manual mixed work, or heavy physical work
+- Exercise habits: weekly frequency, type, and typical duration
+- Optional InBody/body-composition report values: basal metabolic rate, body fat percentage, body fat mass, skeletal muscle mass, visceral fat, and target weight
+
+Example:
+
+```text
+@health-tracker I want to set my daily nutrition targets first. Female, 21, 174 cm, 79 kg, goal is fat loss, mostly seated work, strength training twice per week, and I have an InBody report.
+```
+
+The plugin is designed for Chinese logs, so a Chinese prompt works naturally:
 
 ```text
 @health-tracker 我想先设置每日饮食目标。女，21岁，174cm，79kg，目标减脂，工作大部分久坐，每周力量训练2次，有一张InBody报告。
 ```
 
-### 2. 记录饮食
+### 2. Log Meals
+
+Example:
 
 ```text
 @health-tracker 今天早餐一根香蕉，中午板烧鸡腿堡一个、中薯一份、无糖可乐半杯，晚餐一碗米饭、鸡蛋一个、肥牛七八片。
 ```
 
-插件会估算：
+The plugin estimates:
 
-- 总热量
-- 蛋白质、脂肪、碳水
-- 糖和盐
-- 距离个人目标的差距
-- 当天可能是缺口、盈余还是基本持平
+- Total calories
+- Protein, fat, and carbohydrate
+- Sugar and salt
+- Difference from personalized targets
+- Whether the day is likely in deficit, surplus, or near maintenance
 
-### 3. 记录蛋白粉
+### 3. Log Protein Powder
 
-蛋白粉不会默认套用某一款固定营养表。第一次记录某个蛋白粉时，需要提供包装营养表或手打营养信息。
+Protein powder is not estimated from a single fixed default label. The first time you log a specific protein powder, provide the package nutrition table or type the label values.
 
-建议提供：
+Recommended label details:
 
-- 每 100g 或每份的热量
-- 蛋白质
-- 脂肪
-- 碳水
-- 糖
-- 盐或钠
-- 每勺/每份克数
-- 产品名、口味和版本
+- Calories per 100 g or per serving
+- Protein
+- Fat
+- Carbohydrate
+- Sugar
+- Salt or sodium
+- Scoop/serving size in grams
+- Product name, flavor, and version
 
-示例：
+Example:
 
 ```text
 @health-tracker 今天喝了一勺蛋白粉，这款每100g：377kcal，蛋白质71g，脂肪6.1g，碳水8.2g，糖5.7g，盐0.45g；一勺30g。
 ```
 
-同款产品的营养表已经提供过后，后续可以直接说：
+After a label for the same product/flavor/version has already been provided, you can refer to it more casually:
 
 ```text
 @health-tracker 晚餐后喝了一勺之前那款抹茶蛋白粉。
 ```
 
-### 4. 记录运动
+### 4. Log Workouts
+
+Example:
 
 ```text
 @health-tracker 今天椭圆机40分钟，外扩腿60个，羽毛球2小时。
 ```
 
-插件会整理：
+The plugin organizes:
 
-- 标准动作名
-- 有氧/无氧/混合运动分类
-- 时长、组数、次数、重量
-- 强度和训练负荷估计
-- 简短恢复或训练建议
+- Standardized exercise names
+- Aerobic, anaerobic, or mixed-sport categories
+- Duration, sets, reps, and weights
+- Intensity and rough training-load estimates
+- Short recovery or training notes
 
-### 5. 记录体重和 InBody
+### 5. Log Body Weight and InBody Reports
+
+Body-weight example:
 
 ```text
 @health-tracker 今天早晨空腹体重78.6kg。
 ```
 
-也可以上传或描述 InBody/体成分报告：
+InBody/body-composition example:
 
 ```text
 @health-tracker 这是我的InBody报告，体重显示有误，实际体重是79kg。
 ```
 
-插件会优先提取：
+The plugin prioritizes:
 
-- 体重
-- 骨骼肌量
-- 体脂肪量
-- 体脂率
+- Body weight
+- Skeletal muscle mass
+- Body fat mass
+- Body fat percentage
 - BMI
-- 基础代谢
-- 内脏脂肪
-- 腰臀比
-- 身体水分和分段数据
+- Basal metabolic rate
+- Visceral fat
+- Waist-hip ratio
+- Total body water and segmental values
 
-### 6. 记录指尖血糖
+### 6. Log Finger-Stick Blood Glucose
+
+Examples:
 
 ```text
 @health-tracker 今天空腹指尖血糖5.4。
@@ -153,16 +169,16 @@ C:\Users\<你的用户名>\plugins\health-tracker
 @health-tracker 晚饭后2小时血糖7.2 mmol/L。
 ```
 
-插件会：
+The plugin:
 
-- 统一单位为 mmol/L，并可换算 mg/dL
-- 区分空腹、餐前、餐后、随机、睡前
-- 给出一般参考范围下的趋势解读
-- 标记低血糖或反复偏高等需要关注的情况
+- Normalizes values to mmol/L and can convert to mg/dL
+- Separates fasting, pre-meal, post-meal, random, and bedtime readings
+- Provides general reference-range interpretation
+- Flags possible low readings or repeated high readings for attention
 
-## 总结和图表
+## Summaries and Charts
 
-可以直接说：
+You can ask:
 
 ```text
 @health-tracker 总结最近两日饮食状况。
@@ -176,15 +192,17 @@ C:\Users\<你的用户名>\plugins\health-tracker
 @health-tracker 画一下我的体重趋势。
 ```
 
-饮食总结会包含每日摄入、维持消耗、活动热量、缺口/盈余、蛋白质/脂肪/碳水达标率等。图表会尽量保持清晰，不把太多指标挤在同一张图里。
+Nutrition summaries can include daily intake, estimated maintenance, raw activity calories, conservatively counted activity calories, deficit/surplus, and protein/fat/carbohydrate target ratios.
 
-## 注意事项
+Charts are kept simple and readable. The plugin avoids crowding too many unrelated metrics into one chart.
 
-- 这是个人记录和估算工具，不是医学建议或诊断工具。
-- 食物估算会受品牌、烹调方式、称重方式和份量描述影响。
-- InBody 等生物电阻抗结果会受水分、盐分、经期、训练、进食时间和测量时间影响，更适合看趋势。
-- 家用血糖仪会受试纸、手部清洁、采血方式和仪器误差影响，不能替代医院静脉血检测。
-- 如果出现明显低血糖症状、极高血糖、胸痛、晕厥、严重乏力、呕吐、呼吸困难等情况，请及时寻求专业医疗帮助。
+## Important Notes
+
+- This is a personal logging and estimation tool, not medical advice or diagnosis.
+- Food estimates vary with brand, cooking method, weighing method, and portion descriptions.
+- InBody and other bioelectrical impedance results can be affected by hydration, sodium intake, menstrual cycle, training, meal timing, and measurement time. Use them mainly for trends.
+- Home glucose meters can be affected by strips, hand cleanliness, sampling technique, and meter accuracy. They do not replace laboratory venous blood tests.
+- Seek professional medical help for concerning symptoms such as severe hypoglycemia symptoms, very high glucose with symptoms, chest pain, fainting, severe weakness, vomiting, or breathing difficulty.
 
 ## Repository Layout
 
