@@ -1,0 +1,4 @@
+interface:
+  display_name: "Body Composition Tracker"
+  short_description: "Analyze InBody reports and daily body weight."
+  default_prompt: "Use $body-composition-tracker to analyze my InBody report or daily weight."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blood Glucose Tracker"
+  short_description: "Record finger-stick glucose and trends."
+  default_prompt: "Use $blood-glucose-tracker to log my blood glucose reading and show trends."

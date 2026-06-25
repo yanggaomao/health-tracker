@@ -1,0 +1,34 @@
+{
+  "name": "health-tracker",
+  "version": "0.1.0+codex.20260625025303",
+  "description": "Personal health tracking plugin for individualized diet targets, meals, exercise, body composition, weight, and blood glucose logs.",
+  "author": {
+    "name": "Local developer"
+  },
+  "keywords": [
+    "health",
+    "nutrition",
+    "exercise",
+    "body-metrics",
+    "blood-glucose"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Health Tracker",
+    "shortDescription": "Set diet targets and track meals, workouts, body metrics, and glucose.",
+    "longDescription": "Health Tracker is a personal health plugin organized into four modules: exercise logging and coaching suggestions, personalized diet target setup plus nutrition structure analysis, body composition/body-weight tracking, and blood glucose tracking. The diet module asks for height, weight, work intensity, goals, and optional InBody/body-composition results on first use so daily calories and macros can be individualized. Protein powder estimates require a matching uploaded or typed nutrition label before precise calorie/macros are applied. It includes daily-nutrition-deficit-tracker, exercise-log-coach, body-composition-tracker, and blood-glucose-tracker. A local routing helper at scripts/route_health_skill.py documents how health log prompts map to the appropriate skill.",
+    "developerName": "Local developer",
+    "category": "Health & Fitness",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use Health Tracker to set my personalized diet targets and log today's meals, workout, weight, and glucose.",
+      "Use $daily-nutrition-deficit-tracker to set my calorie and macro targets from my height, weight, work intensity, and InBody report.",
+      "Use $exercise-log-coach to summarize my monthly workouts.",
+      "Use $body-composition-tracker to compare my InBody and weight trend."
+    ],
+    "brandColor": "#10B981"
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Daily Nutrition Deficit Tracker"
+  short_description: "Set personal diet targets, track meals, deficits, and macros."
+  default_prompt: "Use $daily-nutrition-deficit-tracker to set my personalized nutrition targets, log today's meals, and summarize my deficit trend."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Exercise Log Coach"
+  short_description: "Log workouts and summarize training patterns."
+  default_prompt: "Use $exercise-log-coach to log today's workout and summarize my training."
